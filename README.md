@@ -4,8 +4,8 @@
 
 ## Варианты похожих проектов
 
-[Проект с похожимм целями](https://github.com/bchu7796/p2p-file-sharing)
-[Справка по источникам](https://github.com/osukhoroslov/distsys-course-hse/tree/master/2022/seminars/07-peer-to-peer)
+- [Проект с похожимм целями](https://github.com/bchu7796/p2p-file-sharing)
+- [Справка по источникам](https://github.com/osukhoroslov/distsys-course-hse/tree/master/2022/seminars/07-peer-to-peer)
 
 ## Основные идеи
 
