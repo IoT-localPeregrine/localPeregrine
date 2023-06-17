@@ -1,12 +1,17 @@
 # localPeregrine 
 
 # Справка
-Удобный p2p сервис для распределения хранимых данных по локальной сети
+Удобный p2p сервис для распределения хранимых данных по локальной сети. 
+
+Было решено делать сетевую часть протокола опираясь на спецификацию Gnutella, так как она решает все задачи, поставленные нами(pure p2p, flat mash network)
+
+- [Ссылка на backlog](https://github.com/orgs/IoT-localPeregrine/projects/2)
 
 ## Варианты похожих проектов
 
 - [Проект с похожимм целями](https://github.com/bchu7796/p2p-file-sharing)
 - [Справка по источникам](https://github.com/osukhoroslov/distsys-course-hse/tree/master/2022/seminars/07-peer-to-peer)
+- [Спецификация протокола Gnutella](https://courses.cs.washington.edu/courses/cse522/05au/gnutella_protocol_0.4.pdf)
 
 ## Основные идеи
 
