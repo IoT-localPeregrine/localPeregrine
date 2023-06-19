@@ -86,14 +86,17 @@ struct QueryHit {
 Добавления в интерфейс библиотеки:
 ```C++
 struct INet {
-    bool ConnectToNetwork(std::string network_name);
-    void Ping(Address peers);
-    void SubscribePing(function<void> ping_consumer_func);
-    void Pong(Peer cur_peer);
-    void SubscribePong(function<void(Peer)> peer_consumer_func);
+    bool ConnectToNetwork(string network_name);
+    list<string> ExploreNetworks();
+
+    void Ping(Address targ_adr);
+    void Pong(Address targ_adr, Peer self);
     void Query(string criteria);
-    void SubscribeQuery(function<void(string)> query_consumer_func);
     void QueryHit(QueryHit query_hit);
+
+    void SubscribePing(function<void> ping_consumer_func);
+    void SubscribePong(function<void(Peer)> peer_consumer_func);
+    void SubscribeQuery(function<void(string)> query_consumer_func);
     void SubscribeQueryHit(function<void(QueryHit)> peer_consumer_func);
 }
 ```
