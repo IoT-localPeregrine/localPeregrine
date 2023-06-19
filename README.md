@@ -7,6 +7,8 @@
 
 - [Ссылка на backlog](https://github.com/orgs/IoT-localPeregrine/projects/2)
 
+- [Ссылка на спецификацию по сетевому протоколу на базе TCP/IP](/doc/spec_tcp_ip.md)
+
 ## Варианты похожих проектов
 
 - [Проект с похожимм целями](https://github.com/bchu7796/p2p-file-sharing)
