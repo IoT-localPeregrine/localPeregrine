@@ -5,9 +5,15 @@
 
 Было решено делать сетевую часть протокола опираясь на спецификацию Gnutella, так как она решает все задачи, поставленные нами(pure p2p, flat mash network)
 
+TODO Определится с номером порта для протокола
+
 - [Ссылка на backlog](https://github.com/orgs/IoT-localPeregrine/projects/2)
 
 - [Ссылка на спецификацию по сетевому протоколу на базе TCP/IP](/doc/spec_tcp_ip.md)
+
+- [Ссылка на use-cases](/doc/use_cases.md)
+
+- [Проблемы проекта](/doc/questions.md)
 
 ## Варианты похожих проектов
 
