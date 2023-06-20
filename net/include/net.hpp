@@ -1,24 +1,24 @@
 #pragma once
 
-extern "C"
-{
-#include <string>
-#include <functional>
+#include "string.h"
+#include "address.h"
+#include "peer.h"
+#include "error.h"
+#include "query_hit.h"
 
-#include "query_hit.hpp"
-#include "address.hpp"
-#include "peer.hpp"
+struct INet;
 
-    bool connect_to_network(std::string network_name);
-    void explore_networks(std::function<void(std::string)> consume_net_name_func);
+struct INet *inet_new();
 
-    void ping();
-    void pong(Address targ_adr, Peer peer);
-    void query(std::string criteria);
-    void query_hit(QueryHit query_hit);
+NetError inet_connect_to_network(struct INet, String network_name);
+NetError inet_explore_networks(struct INet, void (*consumer_fnc)(String net_name));
 
-    void subscribe_ping(void (*consumer_fnc)());
-    void subscribe_pong(void (*consumer_fnc)(Peer peer));
-    void subscribe_query(void (*consumer_fnc)(std::string criteria));
-    void subscribe_query_hit(void (*consumer_fnc)(QueryHit hit_details));
-}
+NetError inet_ping(struct INet);
+NetError inet_pong(struct INet, Address targ_adr, Peer peer);
+NetError inet_query(struct INet, String criteria);
+NetError inet_query_hit(struct INet, QueryHit query_hit);
+
+NetError inet_subscribe_ping(void (*consumer_fnc)());
+NetError inet_subscribe_pong(void (*consumer_fnc)(Peer peer));
+NetError inet_subscribe_query(void (*consumer_fnc)(struct string criteria));
+NetError inet_subscribe_query_hit(void (*consumer_fnc)(QueryHit hit_details));
