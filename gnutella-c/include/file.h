@@ -1,7 +1,7 @@
 #pragma once
 
 #include "utils.h"
-#include "string.h"
+#include "sstring.h"
 #include "list.h"
 
 typedef struct {

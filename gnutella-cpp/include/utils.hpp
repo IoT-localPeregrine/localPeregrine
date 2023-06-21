@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "./gnutella-c/include/string.h"
+#include "./gnutella-c/include/sstring.h"
 
 namespace gnutella_cpp
 {

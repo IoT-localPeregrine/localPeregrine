@@ -1,6 +1,6 @@
 #pragma once
 
-#include "string.h"
+#include "sstring.h"
 #include "peer.h"
 #include "error.h"
 #include "query_hit.h"
