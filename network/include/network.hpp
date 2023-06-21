@@ -54,12 +54,10 @@ namespace local_peregrine
             }
 
         public:
-            /*
-                std::list<std::string> ExploreNetworks();
-                bool ConnectToNetwork(std::string network_name);
+                std::list<std::string> ExploreNetworks() {}
+                bool ConnectToNetwork(std::string network_name) {}
 
-                File FindElement(QueryCriteria criteria);
-            */
+                File FindElement(std::string criteria) {}
         };
     }
 }
