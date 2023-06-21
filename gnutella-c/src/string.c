@@ -1,4 +1,4 @@
-#include "include/string.h"
+#include "sstring.h"
 
 SString *string_new()
 {

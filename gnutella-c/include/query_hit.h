@@ -7,5 +7,5 @@ typedef struct {
     Deleted: Вырезали по причине того, что адрес будет заполняться на уровне сетевого протокола
     Address address; 
     */
-    List_File files;
+    List_File *files;
 } QueryHit;
