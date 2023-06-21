@@ -4,21 +4,28 @@
 #include <functional>
 
 #include "query_hit.hpp"
-#include "address.hpp"
 #include "peer.hpp"
 
-struct INet
+#include "../gnutella-c/include/error.h"
+
+namespace gnutella_cpp
 {
-    bool connect_to_network(const std::string &network_name);
-    void explore_networks(std::function<void(std::string)> consume_net_name_func);
+    namespace INet
+    {
+        void init(std::string);
+        void exit();
 
-    void ping();
-    void pong(const Address &targ_adr, const Peer &peer);
-    void query(const std::string &criteria);
-    void query_hit(const QueryHit &query_hit);
+        NetError connect_to_network(std::string network_name);
+        NetError explore_networks(std::function<void(std::string)> explr_consumer_fnc);
 
-    void subscribe_ping(std::function<void()>);
-    void subscribe_pong(void (*consumer_fnc)(Peer peer));
-    void subscribe_query(void (*consumer_fnc)(std::string criteria));
-    void subscribe_query_hit(void (*consumer_fnc)(QueryHit hit_details));
-};
+        NetError create(std::string network_name);
+
+        NetError ping();
+        NetError query(std::string criteria);
+
+        NetError subscribe_ping(std::function<Peer()> ping_consumer_fnc);
+        NetError subscribe_pong(std::function<void(Peer)> ping_consumer_fnc);
+        NetError subscribe_query(std::function<QueryHit(std::string)> query_consumer_fnc);
+        NetError subscribe_query_hit(std::function<void(QueryHit)> query_hit_consumer_fnc);
+    };
+}

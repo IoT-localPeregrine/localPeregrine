@@ -7,7 +7,7 @@
 typedef struct {
     uint32_t index;
     uint32_t size;
-    String name;
+    SString name;
 } File;
 
 LIST_DECLARE(File);

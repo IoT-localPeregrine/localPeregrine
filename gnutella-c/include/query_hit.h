@@ -1,9 +1,11 @@
 #pragma once
 
-#include "address.h"
 #include "file.h"
 
 typedef struct {
-    Address address;
+    /*
+    Deleted: Вырезали по причине того, что адрес будет заполняться на уровне сетевого протокола
+    Address address; 
+    */
     List_File files;
 } QueryHit;
