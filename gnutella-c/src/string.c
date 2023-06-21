@@ -1,4 +1,4 @@
-#include "sstring.h"
+#include "gnutella-c/include/sstring.h"
 
 SString *string_new()
 {
