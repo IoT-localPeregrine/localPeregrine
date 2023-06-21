@@ -5,30 +5,25 @@
 
 #include "query_hit.hpp"
 #include "peer.hpp"
-#include "utils.hpp"
+#include "error.hpp"
 
-#include "gnutella-c/include/error.h"
-
-extern "C"
+namespace gnutella_cpp
 {
-    namespace gnutella_cpp
+    namespace inet
     {
-        namespace inet
-        {
-            void init(std::string);
+        void init(std::string);
 
-            NetError connect_to_network(std::string network_name);
-            NetError explore_networks(void (*)(SString));
+        NetError connect_to_network(std::string network_name);
+        NetError explore_networks(void (*)(std::string));
 
-            NetError create(std::string network_name);
+        NetError create(std::string network_name);
 
-            NetError ping();
-            NetError query(std::string criteria);
+        NetError ping();
+        NetError query(std::string criteria);
 
-            NetError subscribe_ping(::Peer (*)());
-            NetError subscribe_pong(void (*)(::Peer));
-            NetError subscribe_query(::QueryHit (*)(SString));
-            NetError subscribe_query_hit(void (*)(::QueryHit));
-        };
-    }
+        NetError subscribe_ping(Peer (*)());
+        NetError subscribe_pong(void (*)(Peer));
+        NetError subscribe_query(QueryHit (*)(std::string));
+        NetError subscribe_query_hit(void (*)(QueryHit));
+    };
 }
