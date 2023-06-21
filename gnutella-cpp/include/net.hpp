@@ -7,7 +7,7 @@
 #include "peer.hpp"
 #include "utils.hpp"
 
-#include "../gnutella-c/include/error.h"
+#include "gnutella-c/include/error.h"
 
 namespace gnutella_cpp
 {
@@ -26,7 +26,7 @@ namespace gnutella_cpp
 
         NetError subscribe_ping(::Peer (*)());
         NetError subscribe_pong(void (*)(::Peer));
-        NetError subscribe_query(QueryHit (*)(SString));
-        NetError subscribe_query_hit(void (*)(QueryHit));
+        NetError subscribe_query(::QueryHit (*)(SString));
+        NetError subscribe_query_hit(void (*)(::QueryHit));
     };
 }

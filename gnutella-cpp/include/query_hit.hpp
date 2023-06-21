@@ -3,17 +3,17 @@
 #include <string>
 #include <list>
 
+#include "gnutella-c/include/file.h"
+#include "gnutella-c/include/query_hit.h"
+
 namespace gnutella_cpp
 {
-    struct File
-    {
-        uint32_t index;
-        uint32_t size;
-        std::string name;
-    };
-
     struct QueryHit
     {
-        std::list<File> files;
+        std::list<File*> files;
+
+        QueryHit(std::list<File*> ctor_files): files(ctor_files) {}
+
+        operator ::QueryHit() const;
     };
 }
