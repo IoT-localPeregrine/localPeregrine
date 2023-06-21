@@ -5,12 +5,7 @@
 #include <list>
 #include <optional>
 
-#include "../gnutella-c/include/net.h"
 #include "../gnutella-cpp/include/query_hit.hpp"
-
-#include "../logger/include/logger.hpp"
-
-#include "../fs/include/file.hpp"
 
 namespace local_peregrine
 {
@@ -19,7 +14,6 @@ namespace local_peregrine
         class Network
         {
             Peer self_;
-            std::unique_ptr<logger::ILog> log_driver_;
             std::list<Peer> peers_;
 
             std::function<std::optional<fs::File>(std::string)> search_criteria_fnc;
