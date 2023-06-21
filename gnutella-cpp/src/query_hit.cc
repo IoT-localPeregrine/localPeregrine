@@ -1,12 +1,15 @@
 #include "gnutella-cpp/include/query_hit.hpp"
 
-gnutella_cpp::QueryHit::operator ::QueryHit() const
+extern "C"
 {
-    List_File *lf = list_File_new();
-    for (auto &i : files)
+    gnutella_cpp::QueryHit::operator ::QueryHit() const
     {
-        list_File_push_back(lf, i);
-    }
+        List_File *lf = list_File_new();
+        for (auto &i : files)
+        {
+            list_File_push_back(lf, i);
+        }
 
-    return (::QueryHit){.files = lf};
+        return (::QueryHit){.files = lf};
+    }
 }

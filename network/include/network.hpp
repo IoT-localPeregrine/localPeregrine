@@ -4,6 +4,7 @@
 #include <memory>
 #include <list>
 #include <optional>
+#include <iostream>
 
 #include "gnutella-cpp/include/net.hpp"
 
@@ -27,19 +28,22 @@ namespace local_peregrine
                 gnutella_cpp::inet::init("SomeName");
 
                 gnutella_cpp::inet::subscribe_ping([]() -> ::Peer
-                                                   { return self_; });
+                                                   { std::cout << "Ping" << std::endl;
+                                                   return self_; });
 
                 gnutella_cpp::inet::subscribe_pong([](::Peer trg_peer) -> void
-                                                   { self_.AddTrackedPeer(trg_peer); });
+                                                   { std::cout << "Pong" << std::endl;
+                                                   self_.AddTrackedPeer(trg_peer); });
 
-                gnutella_cpp::inet::subscribe_query([](SString sstring) -> ::QueryHit {
+                gnutella_cpp::inet::subscribe_query([](SString sstring) -> ::QueryHit
+                                                    {
+                    std::cout << "Query" << std::endl;
+
                     std::list<::File*> files = repository_.FindByCriteria(gnutella_cpp::utils::FromSString(sstring));
-                    return gnutella_cpp::QueryHit(files);
-                });
+                    return gnutella_cpp::QueryHit(files); });
 
-                gnutella_cpp::inet::subscribe_query_hit([](::QueryHit query_hit) -> void {
-                    
-                });
+                gnutella_cpp::inet::subscribe_query_hit([](::QueryHit query_hit) -> void
+                                                        { std::cout << "Query hit" << std::endl; });
             }
 
         public:

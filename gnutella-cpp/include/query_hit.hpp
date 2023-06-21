@@ -6,14 +6,17 @@
 #include "gnutella-c/include/file.h"
 #include "gnutella-c/include/query_hit.h"
 
-namespace gnutella_cpp
+extern "C"
 {
-    struct QueryHit
+    namespace gnutella_cpp
     {
-        std::list<File*> files;
+        struct QueryHit
+        {
+            std::list<File *> files;
 
-        QueryHit(std::list<File*> ctor_files): files(ctor_files) {}
+            QueryHit(std::list<File *> ctor_files) : files(ctor_files) {}
 
-        operator ::QueryHit() const;
-    };
+            operator ::QueryHit() const;
+        };
+    }
 }
