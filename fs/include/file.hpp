@@ -1,15 +1,16 @@
 #pragma once
 
-#include <string>
 #include <filesystem>
+
+#include "gnutella-cpp/include/query_hit.hpp"
 
 namespace local_peregrine
 {
     namespace fs
     {
-        struct File
+        struct File : ::File
         {
-            std::filesystem::path path;
+            std::filesystem::path sys_path;
         };
     }
 }
