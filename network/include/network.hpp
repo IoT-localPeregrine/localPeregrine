@@ -5,7 +5,7 @@
 #include <list>
 #include <optional>
 
-#include "../gnutella-cpp/include/query_hit.hpp"
+#include "../gnutella-cpp/include/net.hpp"
 
 namespace local_peregrine
 {
@@ -13,49 +13,34 @@ namespace local_peregrine
     {
         class Network
         {
-            Peer self_;
-            std::list<Peer> peers_;
-
-            std::function<std::optional<fs::File>(std::string)> search_criteria_fnc;
-
-        public:
-            std::list<std::string> ExploreNetworks();
-            bool ConnectToNetwork(std::string network_name);
-
-            File FindElement(QueryCriteria criteria);
+        private:
+            static gnutella_cpp::Peer self_;
 
         private:
-            void consume_ping(Address address)
+            Network()
             {
-                log_driver_->write(logger::LogLevel::kInfo, "Ping message received!");
+                gnutella_cpp::inet::init("SomeName");
 
-                inet_pong(address, self_);
+                gnutella_cpp::inet::subscribe_ping([]() -> ::Peer
+                                                   { return self_; });
+
+                gnutella_cpp::inet::subscribe_pong([](::Peer trg_peer) -> void {});
             }
 
-            void consume_pong(Peer peer)
+        public:
+            static Network &getInstance()
             {
-                log_driver_->write(logger::LogLevel::kInfo, "Pong message received!");
-
-                // TODO Что делать при многопоточке
-                peers_.push_back(peer);
+                static Network instance;
+                return instance;
             }
 
-            void consume_query(SString criteria)
-            {
-                log_driver_->write(logger::LogLevel::kInfo, "Query message received!");
+        public:
+            /*
+                std::list<std::string> ExploreNetworks();
+                bool ConnectToNetwork(std::string network_name);
 
-                std::string criteria_std_str = std::string(criteria.val, criteria.cnt);
-                auto search_file = search_criteria_fnc(criteria_std_str);
-
-                if (search_file.has_value())
-                {
-                    inet_query_hit()
-                }
-            }
-
-            static void consume_query_hit(QueryHit query_hit)
-            {
-            }
+                File FindElement(QueryCriteria criteria);
+            */
         };
     }
 }

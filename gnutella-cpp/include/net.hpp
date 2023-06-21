@@ -24,8 +24,8 @@ namespace gnutella_cpp
         NetError ping();
         NetError query(std::string criteria);
 
-        NetError subscribe_ping(Peer (*)());
-        NetError subscribe_pong(void (*)(Peer));
+        NetError subscribe_ping(::Peer (*)());
+        NetError subscribe_pong(void (*)(::Peer));
         NetError subscribe_query(QueryHit (*)(SString));
         NetError subscribe_query_hit(void (*)(QueryHit));
     };

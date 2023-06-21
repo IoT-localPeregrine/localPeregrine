@@ -13,7 +13,7 @@ NetError gnutella_cpp::inet::create(std::string net_name) { inet_create(utils::T
 NetError gnutella_cpp::inet::ping() { inet_ping(); }
 NetError gnutella_cpp::inet::query(std::string criteria) { inet_query(utils::ToSString(criteria)); }
 
-NetError subscribe_ping(Peer (*callback)()) { inet_subscribe_ping((Wrapper_PingConsumerFunc){callback}); }
-NetError subscribe_pong(void (*callback)(Peer)) { inet_subscribe_pong((Wrapper_PongConsumerFunc){callback}); }
+NetError subscribe_ping(::Peer (*callback)()) { inet_subscribe_ping((Wrapper_PingConsumerFunc){callback}); }
+NetError subscribe_pong(void (*callback)(::Peer)) { inet_subscribe_pong((Wrapper_PongConsumerFunc){callback}); }
 NetError subscribe_query(QueryHit (*callback)(SString)) { inet_subscribe_query((Wrapper_QueryConsumerFunc){callback}); }
 NetError subscribe_query_hit(void (*callback)(QueryHit)) { inet_subscribe_query_hit((Wrapper_QueryHitConsumerFunc){callback}); }
