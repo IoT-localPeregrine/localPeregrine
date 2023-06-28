@@ -10,7 +10,8 @@
 
 #include "fs/include/repository.hpp"
 
-#include "gnutella-cpp/include/utils.hpp"
+using gnutella_cpp::Peer;
+using gnutella_cpp::QueryHit;
 
 namespace local_peregrine
 {
@@ -19,7 +20,8 @@ namespace local_peregrine
         class Network
         {
         private:
-            static gnutella_cpp::Peer self_;
+
+            // static gnutella_cpp::Peer self_;
             static fs::Repository repository_;
 
         private:
@@ -27,22 +29,24 @@ namespace local_peregrine
             {
                 gnutella_cpp::inet::init("SomeName");
 
-                gnutella_cpp::inet::subscribe_ping([]() -> ::Peer
+                gnutella_cpp::inet::subscribe_ping([]() -> Peer
                                                    { std::cout << "Ping" << std::endl;
-                                                   return self_; });
+                                                //    return self_; 
+                                                   });
 
-                gnutella_cpp::inet::subscribe_pong([](::Peer trg_peer) -> void
+                gnutella_cpp::inet::subscribe_pong([](Peer trg_peer) -> void
                                                    { std::cout << "Pong" << std::endl;
-                                                   self_.AddTrackedPeer(trg_peer); });
+                                                //    self_.AddTrackedPeer(trg_peer);
+                                                    });
 
-                gnutella_cpp::inet::subscribe_query([](SString sstring) -> ::QueryHit
+                gnutella_cpp::inet::subscribe_query([](std::string sstring) -> QueryHit
                                                     {
                     std::cout << "Query" << std::endl;
 
-                    std::list<::File*> files = repository_.FindByCriteria(gnutella_cpp::utils::FromSString(sstring));
-                    return gnutella_cpp::QueryHit(files); });
+                    std::list<::File> files = repository_.FindByCriteria(sstring);
+                    return QueryHit(files); });
 
-                gnutella_cpp::inet::subscribe_query_hit([](::QueryHit query_hit) -> void
+                gnutella_cpp::inet::subscribe_query_hit([](QueryHit query_hit) -> void
                                                         { std::cout << "Query hit" << std::endl; });
             }
 

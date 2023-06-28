@@ -31,10 +31,12 @@ elseif(APPLE) # MacOSX
 	)
 	find_library(FOUNDATION Foundation)
 	find_library(IOBLUETOOTH IOBluetooth)
-	target_link_libraries(bluetooth-serial-port ${FOUNDATION} ${IOBLUETOOTH} -fobjc-arc)
+	target_link_libraries(bluetooth-serial-port ${FOUNDATION} ${IOBLUETOOTH} -fobjc-arc gnutella-cpp)
 	
 	add_executable(btScan src/osx/btScan.mm)
 	target_link_libraries(btScan ${FOUNDATION} ${IOBLUETOOTH})
+
+	target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 else() # Linux
 	set(PLATFORM linux)
 	target_sources(bluetooth-serial-port

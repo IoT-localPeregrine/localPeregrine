@@ -11,7 +11,7 @@ namespace local_peregrine
             std::filesystem::path base_dir_;
 
         public:
-            std::list<::File*> FindByCriteria(std::string criteria) {
+            std::list<::File> FindByCriteria(std::string criteria) {
                 //TODO
             }
         };
